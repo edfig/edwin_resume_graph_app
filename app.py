@@ -9,8 +9,13 @@ import matplotlib.pyplot as plt
 st.set_page_config(page_title="Edwin Figueroa — Career Knowledge Graph", layout="wide")
 
 DATA_PATH = Path(__file__).parent / "resume_graph_data.json"
-with open(DATA_PATH) as f:
-    data = json.load(f)
+
+@st.cache_data
+def load_data():
+    with open(DATA_PATH) as f:
+        return json.load(f)
+
+data = load_data()
 
 GROUP_COLORS = {
     "Person": "#ff69b4",
